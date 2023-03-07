@@ -1,0 +1,4 @@
+ros-noetic-ros-core=1.5.0-1*
+ros-noetic-cv-bridge
+python-tk
+python3-pip

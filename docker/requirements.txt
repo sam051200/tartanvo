@@ -1,0 +1,7 @@
+numpy
+scipy
+matplotlib
+ipython
+opencv-python
+cupy-cuda117
+torch

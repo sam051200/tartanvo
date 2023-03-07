@@ -1,0 +1,4 @@
+*
+!apt_package*.txt
+!requirement*.txt
+!*entrypoint.sh

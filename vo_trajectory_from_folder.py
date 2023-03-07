@@ -76,7 +76,7 @@ if __name__ == '__main__':
         flowcount = 0
     while True:
         try:
-            sample = testDataiter.next()
+            sample = next(testDataiter)
         except StopIteration:
             break
 
