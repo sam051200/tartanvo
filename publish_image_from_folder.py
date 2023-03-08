@@ -46,8 +46,8 @@ from cv_bridge import CvBridge
 class PubImgFolder(object):
     def __init__(self):
 
-        image_dir = rospy.get_param('~img_dir', 'data/EuRoC_V102/image_left')
-        pose_file = rospy.get_param('~pose_file', 'data/EuRoC_V102/pose_left.txt')
+        image_dir = rospy.get_param('/img_dir', 'data/EuRoC_V102/image_left')
+        pose_file = rospy.get_param('/pose_file', 'data/EuRoC_V102/pose_left.txt')
 
         self.cv_bridge = CvBridge()
         self.img_pub = rospy.Publisher("rgb_image", Image, queue_size=10)
@@ -73,20 +73,20 @@ class PubImgFolder(object):
     def caminfo_publish(self):
         caminfo = CameraInfo()
         # image info for EuRoC
-        caminfo.width   = 752
-        caminfo.height  = 480
-        caminfo.K[0]    = 458.6539916992
-        caminfo.K[4]    = 457.2959899902
-        caminfo.K[2]    = 367.2149963379
-        caminfo.K[5]    = 248.3750000000
+        # caminfo.width   = 752
+        # caminfo.height  = 480
+        # caminfo.K[0]    = 458.6539916992
+        # caminfo.K[4]    = 457.2959899902
+        # caminfo.K[2]    = 367.2149963379
+        # caminfo.K[5]    = 248.3750000000
 
         # # image info for KTIIT_10
-        # caminfo.width   = 1226
-        # caminfo.height  = 370
-        # caminfo.K[0]    = 707.0912
-        # caminfo.K[4]    = 707.0912
-        # caminfo.K[2]    = 601.8873
-        # caminfo.K[5]    = 183.1104
+        caminfo.width   = 1226
+        caminfo.height  = 370
+        caminfo.K[0]    = 707.0912
+        caminfo.K[4]    = 707.0912
+        caminfo.K[2]    = 601.8873
+        caminfo.K[5]    = 183.1104
 
         self.caminfo_pub.publish(caminfo)
 

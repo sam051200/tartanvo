@@ -36,7 +36,7 @@ def SE2se(SE_data):
     return result
     
 def SO2so(SO_data):
-    return R.from_dcm(SO_data).as_rotvec()
+    return R.from_matrix(SO_data).as_rotvec()
 
 def so2SO(so_data):
     return R.from_rotvec(so_data).as_matrix()
@@ -121,7 +121,7 @@ def sos2quats(so_datas,mean_std=[[1],[1]]):
     return quat_datas
 
 def SO2quat(SO_data):
-    rr = R.from_dcm(SO_data)
+    rr = R.from_matrix(SO_data)
     return rr.as_quat()
 
 def quat2SO(quat_data):
