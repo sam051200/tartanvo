@@ -1,3 +1,5 @@
 *.pyc
-models/
 data/
+# These files/folders untrack
+!model*/
+!result*/
