@@ -35,7 +35,7 @@ do
         TZ=UTC0 printf 'Build duration=%(%H:%M:%S)T\n' "$ELAPSED"
         ;;
     e)
-        docker exec -it --user=root $CTNR_NAME bash
+        docker exec -it --user=root $CTNR_NAME /ros_entrypoint.sh bash
         ;;
     i)
         IMG_NAME="$OPTARG"

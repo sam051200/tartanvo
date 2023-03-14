@@ -31,8 +31,8 @@ def pose2motion(data):
 
 def SE2se(SE_data):
     result = np.zeros((6))
-    result[0:3] = np.array(SE_data[0:3,3].T)
-    result[3:6] = SO2so(SE_data[0:3,0:3]).T
+    result[0:3] = np.array(SE_data[0:3,3].T) # translation
+    result[3:6] = SO2so(SE_data[0:3,0:3]).T # quanternion
     return result
     
 def SO2so(SO_data):

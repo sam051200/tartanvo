@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File with args",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--model-name", "tartanvo_1914.pkl",
+                "--kitti", 
+                "--batch-size", "1",
+                "--worker-num", "1",
+                "--test-dir", "/datasets/KITTI/KITTI_10/image_left"
+            ]
+        }
+    ]
+}

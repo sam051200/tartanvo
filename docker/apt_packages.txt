@@ -1,5 +1,5 @@
 ros-noetic-ros-core=1.5.0-1*
 python-tk=2.7.18-1
 python3-pip=20.0.2-5ubuntu1.8
-ros-noetic-cv-bridge=1.16.2-1focal.20221124.033645
-ros-noetic-rviz=1.14.19-1focal.20221209.214937
+ros-noetic-cv-bridge=1.16.2-1focal.20230215.235250
+ros-noetic-rviz=1.14.19-1focal.20230216.003249

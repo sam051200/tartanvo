@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
 from Datasets.utils import ToTensor, Compose, CropCenter, dataset_intrinsics, DownscaleFlow, plot_traj, visflow
 from Datasets.tartanTrajFlowDataset import TrajFolderDataset
-from Datasets.transformation import ses2poses_quat
+from Datasets.transformation import ses2poses_quat, tartan2kitti
 from evaluator.tartanair_evaluator import TartanAirEvaluator
 from TartanVO import TartanVO
 
@@ -107,3 +107,4 @@ if __name__ == '__main__':
         np.savetxt('results/'+testname+'.txt',results['est_aligned'])
     else:
         np.savetxt('results/'+testname+'.txt',poselist)
+    np.savetxt('results/'+testname+'-kitti_format.txt',tartan2kitti(poselist))
