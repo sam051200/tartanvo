@@ -4,22 +4,34 @@ cd /app
 source "/opt/ros/$ROS_DISTRO/setup.bash"
 
 MODEL=tartanvo_1914.pkl
-DATASET_DIR=/datasets/KITTI/KITTI_10/image_left
 RVIZ_CONFIG=./config.rviz
 
 # Enable tracing
 set -x
 
-while getopts "ro" opt
+GT_DIR=""
+while getopts "ked:g:ro" opt
 do
   case $opt in
     # VAR=$OPTARG
+    k)
+        DATASET_FORMAT=--kitti
+        ;;
+    e)
+        DATASET_FORMAT=--euroc
+        ;;
+    d)
+        DATASET_DIR=$OPTARG
+        ;;
+    g)  
+        GT_DIR="--pose-file ${OPTARG}"
+        ;;
     r)
         python3 vo_trajectory_from_folder.py \
             --model-name ${MODEL} \
-            --kitti \
+            ${DATASET_FORMAT} \
             --batch-size 1 --worker-num 1 \
-            --test-dir ${DATASET_DIR}
+            --test-dir ${DATASET_DIR} ${GT_DIR}
         ;;
     o)
         rosparam set /img_dir ${DATASET_DIR}

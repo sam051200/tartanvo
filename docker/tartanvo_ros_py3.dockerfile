@@ -40,3 +40,9 @@ ENTRYPOINT ["/ros_entrypoint.sh"]
 WORKDIR /app
 
 CMD ["bash"]
+
+# TODO: add python2 venv? (for eval tool: https://github.com/uzh-rpg/rpg_trajectory_evaluation)
+# RUN apt install -y -no-recom python3-venv=3.8.2-0ubuntu2
+# ADD https://bootstrap.pypa.io/pip/2.7/get-pip.py
+# RUN python3 -m venv myenv
+# RUN source myenv/bin/activate
