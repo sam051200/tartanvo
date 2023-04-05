@@ -16,7 +16,7 @@
                 "--kitti", 
                 "--batch-size", "1",
                 "--worker-num", "1",
-                "--test-dir", "/datasets/KITTI/KITTI_10/image_left"
+                "--test-dir", "/datasets/KITTI/10_tartanvo_format/image_left"
             ]
         }
     ]
