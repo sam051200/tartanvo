@@ -18,6 +18,7 @@ class TrajFolderDataset(Dataset):
 
         print('Find {} image files in {}'.format(len(self.rgbfiles), imgfolder))
 
+        # GT when inference for calc scale to align
         if posefile is not None and posefile!="":
             poselist = np.loadtxt(posefile).astype(np.float32)
             assert(poselist.shape[1]==7) # position + quaternion
@@ -59,6 +60,7 @@ class TrajFolderDataset(Dataset):
         if self.motions is None:
             return res
         else:
+            # GT when inference for calc scale to align
             res['motion'] = self.motions[idx]
             return res
 

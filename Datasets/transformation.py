@@ -21,13 +21,14 @@ def motion2pose(data):
         all_pose[i+1,:] = pose_line
     return all_pose
 
+# Motion: 12 elements relative motion from current to next frame
 def pose2motion(data, skip=0):
     data_size = data.shape[0]
     all_motion = np.zeros((data_size-1,12))
     for i in range(0,data_size-1-skip):
         pose_curr = line2mat(data[i,:])
         pose_next = line2mat(data[i+1+skip,:])
-        motion = pose_curr.I*pose_next
+        motion = pose_curr.I*pose_next # Tcw^{-1}*Tnw = Twc*Tnw = Tnc (current to next)
         motion_line = np.array(motion[0:3,:]).reshape(1,12)
         all_motion[i,:] = motion_line
     return all_motion
