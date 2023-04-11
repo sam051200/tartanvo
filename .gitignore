@@ -1,5 +1,6 @@
 *.pyc
 data/
+runs/
 models/*
 results/*
 evaluator/rpg_trajectory_evaluation

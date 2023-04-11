@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV ROS_DISTRO noetic
-ENV TZ=Etc/UTC
+ENV TZ=Asia/Taipei
 ARG DEBIAN_FRONTEND=noninteractive
 ARG APT_DPDS=apt_packages.txt
 ARG PY_DPDS=requirements.txt
@@ -22,12 +22,18 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6
 # install apt dependencies
 RUN apt update
 COPY ./${APT_PKGS} ./
-RUN xargs apt install --yes --no-install-recommends < ${APT_DPDS}
+RUN xargs apt install \
+    --yes \
+    --no-install-recommends \
+    < ${APT_DPDS}
 
 # install python dependencies
 COPY ./${PY_DPDS} ./
 RUN python3 -m pip install --upgrade pip \
-    && python3 -m pip install --no-cache-dir --requirement ${PY_DPDS}
+    && python3 -m pip install \
+    --no-cache-dir \
+    --extra-index-url https://download.pytorch.org/whl/cu117 \
+    --requirement ${PY_DPDS}
 
 # Clean up
 RUN apt clean \

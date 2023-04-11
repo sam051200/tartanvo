@@ -55,7 +55,12 @@ class TartanVO(object):
         self.flow_norm = 20 # scale factor for flow
 
     def load_model(self, model, modelname):
-        preTrainDict = torch.load(modelname)
+        all_dict = torch.load(modelname)
+        if "model_state_dict" in all_dict:
+            preTrainDict = all_dict["model_state_dict"]
+        else:
+            preTrainDict = all_dict
+            
         model_dict = model.state_dict()
         preTrainDictTemp = {k:v for k,v in preTrainDict.items() if k in model_dict}
 
@@ -72,7 +77,7 @@ class TartanVO(object):
         model_dict.update(preTrainDictTemp)
         model.load_state_dict(model_dict)
         print('Model loaded...')
-        return model
+        return model, all_dict
 
     def test_batch(self, sample):
         self.test_count += 1

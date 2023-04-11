@@ -4,8 +4,11 @@ matplotlib==3.7.1
 numpy==1.24.2
 opencv-python==4.7.0.72
 scipy==1.10.1
-torch==1.13.1
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
 evo==1.21.0
+tqdm==4.65.0
+tensorboard==2.12.1
 # For dev
 ## for vscode Python Interactive window
 jupyter==1.0.0
@@ -13,3 +16,5 @@ colorama==0.4.6
 ruamel.yaml==0.17.21
 ## remove unused imports
 autoflake==2.0.2
+## To format code
+autopep8==2.0.0

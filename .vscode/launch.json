@@ -12,14 +12,19 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": [
-                "--model-name", "tartanvo_1914.pkl",
+                // "--model-name", "tartanvo_1914.pkl",
+                "--model-name", "tartanvo_20230411_1656.tar",
+
                 "--kitti", 
                 "--batch-size", "8",
                 // "--worker-num", "1",
                 "--save-flow",
-                "--test-dir", "/datasets/TartanAir/P001/image_left",
-                "--flow-dir", "/datasets/TartanAir/P001/flow",
-                "--pose-file", "/datasets/TartanAir/P001/pose_left.txt"
+
+                "--test-dir", "/datasets/KITTI/10_tartanvo_format/image_left",
+                // "--test-dir", "/datasets/TartanAir/P001/image_left",
+
+                // "--flow-dir", "/datasets/TartanAir/P001/flow",
+                // "--pose-file", "/datasets/TartanAir/P001/pose_left.txt"
             ]
         }
     ]

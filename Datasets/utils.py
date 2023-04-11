@@ -144,8 +144,8 @@ class SampleNormalize(object):
     # Normalize optical flow & pose before input into network
     # NN output normalized flow & pose
     def __init__(self, pose_std: np.ndarray = None, flow_norm: float = 20.0) -> None:
+        # Set default value
         if pose_std is None:
-            # Default value
             # the output scale factor
             self.pose_std = np.array(
                 [0.13,  0.13,  0.13,  0.013,  0.013,  0.013], dtype=np.float32)
