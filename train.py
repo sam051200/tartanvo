@@ -106,10 +106,12 @@ class PoseNormLoss(nn.Module):
         R_o = outputs[:, 3:6]
         T_t = targets[:, 0:3]
         R_t = targets[:, 3:6]
-        scale_o = torch.maximum(torch.norm(outputs, dim=1, keepdim=True), self.epsilon)
-        scale_t = torch.maximum(torch.norm(targets, dim=1, keepdim=True), self.epsilon)
-        T_loss = torch.norm((T_o / scale_o) - (T_t / scale_t), dim=1, keepdim=True)
-        R_loss = torch.norm(R_o - R_t, dim=1, keepdim=True)
+        scale_o = torch.maximum(torch.norm(outputs, p=2, dim=1, keepdim=True), 
+                                self.epsilon)
+        scale_t = torch.maximum(torch.norm(targets, p=2, dim=1, keepdim=True), 
+                                self.epsilon)
+        T_loss = torch.norm((T_o / scale_o) - (T_t / scale_t), p=2, dim=1, keepdim=True)
+        R_loss = torch.norm(R_o - R_t, p=2, dim=1, keepdim=True)
         return T_loss + R_loss
 
 
@@ -159,10 +161,10 @@ if __name__ == "__main__":
     tartanvo = TartanVO(args.model_name)
     model = tartanvo.vonet
 
-    flow_criterion = nn.L1Loss(reduction="mean")
+    flow_criterion = nn.MSELoss(reduction="mean")
     pose_criterion = PoseNormLoss(1e-6)
     weight_lambda = 0.1
-    optimizer = optim.Adam(model.parameters(), lr=1e-5)
+    optimizer = optim.Adam(model.parameters(), lr=1e-6)
 
     writer = SummaryWriter("runs/TartanVO")
 
@@ -181,6 +183,7 @@ if __name__ == "__main__":
 
             # Forward
             flow, pose = model([img0, img1, intrinsic])
+
             # Loss
             # Pre-divide by batch size to make it numerically stable
             batch_flow_loss = flow_criterion(flow, flow_gt)  # /batche_size, scalar
@@ -188,11 +191,13 @@ if __name__ == "__main__":
                 pose, pose_gt
             ).mean()  # /batche_size, scalar
             batch_loss = weight_lambda * batch_flow_loss + batch_pose_loss
+            
             # Total loss
             # Not accurate (a little bit) if all batch size are not the same
             flow_loss += batch_flow_loss.item()
             pose_loss += batch_pose_loss.item()
             loss += batch_loss.item()
+            
             # Backpropagation
             optimizer.zero_grad()
             batch_loss.backward()

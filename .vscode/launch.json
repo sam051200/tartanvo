@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File with args",
+            "name": "Python: this, test, kitti",
             "type": "python",
             "request": "launch",
             "program": "${file}",
@@ -13,18 +13,29 @@
             "justMyCode": true,
             "args": [
                 // "--model-name", "tartanvo_1914.pkl",
-                "--model-name", "tartanvo_20230411_1656.tar",
-
+                "--model-name", "tartanvo_20230411_1755.tar",
                 "--kitti", 
                 "--batch-size", "8",
-                // "--worker-num", "1",
+                "--worker-num", "1",
                 "--save-flow",
-
                 "--test-dir", "/datasets/KITTI/10_tartanvo_format/image_left",
-                // "--test-dir", "/datasets/TartanAir/P001/image_left",
-
-                // "--flow-dir", "/datasets/TartanAir/P001/flow",
-                // "--pose-file", "/datasets/TartanAir/P001/pose_left.txt"
+            ]
+        },
+        {
+            "name": "Python: this, train, tartanair",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--model-name", "tartanvo_1914.pkl",
+                // "--model-name", "tartanvo_20230411_1656.tar",
+                "--batch-size", "8",
+                "--save-flow",
+                "--test-dir", "/datasets/TartanAir/P001/image_left",
+                "--flow-dir", "/datasets/TartanAir/P001/flow",
+                "--pose-file", "/datasets/TartanAir/P001/pose_left.txt"
             ]
         }
     ]
