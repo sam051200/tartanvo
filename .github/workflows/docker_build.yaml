@@ -6,6 +6,8 @@ on:
       - "python3"
     paths:
       - '**/docker/*py3.dockerfile'
+      - '**/docker/*.txt'
+
 
 jobs:
   build:
