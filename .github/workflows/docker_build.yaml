@@ -1,13 +1,8 @@
-name: ci
+name: auto build docker image (py3)
 
 on:
   push:
-    branches:
-      - "python3"
-    paths:
-      - '**/docker/*py3.dockerfile'
-      - '**/docker/*.txt'
-
+    branches: [ "python3" ]
 
 jobs:
   build:
@@ -26,6 +21,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./docker
-          file: './docker/*py3.dockerfile'
+          file: ./docker/tartanvo_ros_py3.dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_IMAGE_NAME }}:latest
