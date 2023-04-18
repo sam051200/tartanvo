@@ -9,8 +9,8 @@ scipy==1.10.1
 
 # torch==1.13.1+cu117
 # torchvision==0.14.1+cu117
-torch==1.13.1+cu114
-torchvision==0.14.1+cu114
+torch==1.12.1+cu113
+torchvision==0.13.1+cu113
 
 evo==1.21.0
 tqdm==4.65.0
@@ -24,3 +24,6 @@ ruamel.yaml==0.17.21
 autoflake==2.0.2
 ## To format code
 autopep8==2.0.0
+
+#
+hydra
