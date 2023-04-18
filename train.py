@@ -9,8 +9,10 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
 from tqdm.auto import tqdm, trange
+from torch.utils.tensorboard import SummaryWriter
+# import wandb
+
 
 from Datasets.tartanVODatset import TartanVODataset
 from Datasets.utils import (
@@ -117,6 +119,12 @@ class PoseNormLoss(nn.Module):
 
 if __name__ == "__main__":
     args = get_args()
+    #Monitoring
+    # if True:
+    #     import wandb
+    #     wandb.init(project='tartanvo', name="tartanvo_org", config=cfg, sync_tensorboard=True)
+    # writer = SummaryWriter(cfg.name)
+
 
     # load trajectory data from a folder
     datastr = "tartanair"

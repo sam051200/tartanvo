@@ -28,12 +28,12 @@ RUN xargs apt install \
     < ${APT_DPDS}
 
 # install python dependencies
-COPY ./${PY_DPDS} ./
-RUN python3 -m pip install --upgrade pip \
-    && python3 -m pip install \
-    --no-cache-dir \
-    --extra-index-url https://download.pytorch.org/whl/cu117 \
-    --requirement ${PY_DPDS}
+#COPY ./${PY_DPDS} ./
+#RUN python3 -m pip install --upgrade pip \
+#    && python3 -m pip install \
+#    --no-cache-dir \
+#    --extra-index-url https://download.pytorch.org/whl/cu117 \
+#    --requirement ${PY_DPDS}
 
 # Clean up
 RUN apt clean \
