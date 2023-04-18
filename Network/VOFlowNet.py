@@ -64,7 +64,7 @@ class ChannelAttention(nn.Module):
         #                        nn.ReLU(),
         #                        nn.Conv2d(in_planes // 16, in_planes, 1, bias=False))
         self.mlp = nn.Sequential(
-            Flatten(),
+            nn.Flatten(),
             nn.Linear(in_planes, in_planes // ratio),
             nn.ReLU(),
             nn.Linear(in_planes // ratio, in_planes)
@@ -109,7 +109,8 @@ class BasicBlock(nn.Module):
     def forward(self, x):
         out = self.conv1(x)
         out = self.conv2(out)
-        #CBAM
+        
+        #CBAM_Attention
         out = self.ca(out) * out
         out = self.sa(out) * out
 

@@ -1,0 +1,4 @@
+train: true
+seed: 42
+model:
+  Attention: true

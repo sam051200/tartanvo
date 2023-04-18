@@ -1,0 +1,6 @@
+train: true
+seed: 42
+dataset:
+  path: /drone/tartanair_tools/dataset/abandonedfactory_sample_P001/P001
+model:
+  Attention: true

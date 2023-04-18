@@ -11,6 +11,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm, trange
 from torch.utils.tensorboard import SummaryWriter
+import hydra
+import random
 # import wandb
 
 
@@ -116,9 +118,19 @@ class PoseNormLoss(nn.Module):
         R_loss = torch.norm(R_o - R_t, p=2, dim=1, keepdim=True)
         return T_loss + R_loss
 
-
-if __name__ == "__main__":
+@hydra.main(config_path='configs', config_name='config')
+def main(cfg):
     args = get_args()
+
+    # randomSeeds (42)
+    random.seed(cfg.seed)
+    np.random.seed(cfg.seed)
+    torch.random.manual_seed(cfg.seed)
+    torch.cuda.manual_seed(cfg.seed)
+    torch.cuda.manual_seed_all(cfg.seed)
+    torch.backends.cudnn.deterministic=True
+    torch.backends.cudnn.benchmark = False
+
     #Monitoring
     # if True:
     #     import wandb
@@ -150,9 +162,12 @@ if __name__ == "__main__":
     )
 
     train_set = TartanVODataset(
-        args.test_dir,
-        posefile=args.pose_file,
-        flowDir=args.flow_dir,
+        # args.test_dir,
+        # posefile=args.pose_file,
+        # flowDir=args.flow_dir,
+        cfg.dataset.path.image_left,
+        posefile=cfg.dataset.path.pose_left,
+        flowDir=cfg.dataset.path.flow,
         transform=transform,
         focalx=focalx,
         focaly=focaly,
@@ -229,3 +244,6 @@ if __name__ == "__main__":
     writer.flush()
     writer.close()
     print("\nFinished!")
+
+if __name__ == "__main__":
+    main()
