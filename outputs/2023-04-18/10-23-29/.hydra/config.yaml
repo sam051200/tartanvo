@@ -1,0 +1,9 @@
+train: true
+seed: 42
+dataset:
+  path:
+    image_left: /drone/tartanair_tools/dataset/abandonedfactory_sample_P001/P001/image_left
+    pose_left: /drone/tartanair_tools/dataset/abandonedfactory_sample_P001/P001/pose_left.txt
+    flow: /drone/tartanair_tools/dataset/abandonedfactory_sample_P001/P001/flow
+model:
+  Attention: true

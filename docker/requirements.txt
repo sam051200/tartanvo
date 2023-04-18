@@ -26,4 +26,5 @@ autoflake==2.0.2
 autopep8==2.0.0
 
 #
-hydra
+hydra-core
+opencv-python-headless

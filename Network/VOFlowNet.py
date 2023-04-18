@@ -111,6 +111,8 @@ class BasicBlock(nn.Module):
         out = self.conv2(out)
         
         #CBAM_Attention
+        print(out.shape)
+        print(self.ca(out).shape)
         out = self.ca(out) * out
         out = self.sa(out) * out
 

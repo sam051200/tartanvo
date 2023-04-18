@@ -176,7 +176,7 @@ def main(cfg):
     )
     num_workers = os.cpu_count() if args.worker_num is None else args.worker_num
     train_loader = DataLoader(
-        train_set, batch_size=args.batch_size, shuffle=True, num_workers=num_workers
+        train_set, batch_size=args.batch_size, shuffle=True, num_workers=1
     )
 
     epoch = 10
