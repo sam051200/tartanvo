@@ -2,7 +2,7 @@
 
 echo "Sart time=$(date +"%T")"
 IMG_NAME="tartanvo"
-IMG_TAG="latest"
+IMG_TAG="cuda114"
 CTNR_NAME="tartanvo_ctnr"
 WORKDIR="/app"
 
