@@ -111,9 +111,9 @@ class BasicBlock(nn.Module):
         out = self.conv2(out)
         
         #CBAM_Attention
-        print(out.shape)
-        print(self.ca(out).shape)
-        out = self.ca(out) * out
+        # print(out.shape)
+        # print(self.ca(out).shape)
+        out = self.ca(out).unsqueeze(2).unsqueeze(3).expand_as(out) * out
         out = self.sa(out) * out
 
         if self.downsample is not None:
